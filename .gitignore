@@ -1,0 +1,7 @@
+# diff-skills 概念リポジトリ
+# 実装 (env.db, collect-tools.py 等) は bonsai/diff-env に寄託
+
+.DS_Store
+*.db
+*.sqlite
+__pycache__/
