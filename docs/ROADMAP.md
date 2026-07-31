@@ -14,14 +14,16 @@
 
 ## 短期 (Next)
 
+- [x] **装備棚卸しコマンド** (弁慶用): `soubi list / issues / add`
+      実装: `~/soubi/soubi.py` → `~/.local/bin/soubi`（`show` / `set-status` / `discard` / `sync` / `log` / `stat` も実装済み）
 - [x] **組織 CLI** (soshiki 用, ドラッカー): `soshiki tree / dept / delegate / add-agent`
       実装: `soshiki/bin/soshiki.py` → `~/.local/bin/soshiki` (`add-domain` / `route` / `agent` / `domains` / `skills` も実装済み)
-- [ ] **装備棚卸しコマンド** (弁慶用): `soubi.py list / issues / add`
-      状態を CLI から確認・更新できるようにする
+- [x] **鍵管理のスコープ除外**: API キー・シークレット管理はエージェント責務から除外し **手動のみ** に変更
+      （弁慶・吉田松陰のスコープから鍵管理を除去）
 - [ ] **スキル内容ハッシュの信頼性向上**: 現在の version ハッシュ方式の
       検証 (同一スキルが異なるハッシュになるケースの確認)
-- [ ] **soubi 統合の整理**: ローカル `~/soubi/` と既存 `bonsai/soubi` の
-      役割 (配備次元 vs カタログ次元) を統合方針に沿って整理
+- [ ] **soubi 統合の整理**: ローカル `~/soubi/`（配備次元）と既存 `bonsai/soubi`（カタログ次元）の
+      役割を統合方針に沿って整理
 
 ## 中期 (Mid)
 
