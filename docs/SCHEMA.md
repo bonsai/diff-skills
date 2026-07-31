@@ -68,20 +68,16 @@ commands:     device_id, name, description, run
 | `v_mcp` / `v_agents` / `v_commands` | デバイス × 資産 の一覧 |
 | `v_matrix` / `v_diff` / `v_by_kind` | 既存 diff-env のツール差分 |
 
-## 3.5 組織 (soshiki) スキーマ
+## 3.5 組織 (soshiki) — 別リポジトリへ移管
 
-実装: `org/schema.sql` (+ `org/seed.sql`) ※本リポジトリ
+組織 (エージェント組織) の管理は **`bonsai/soshiki`** へ移管した。
 
-| テーブル | 内容 |
-|---|---|
-| `departments` | 部署 (統括/開発/資産・守り/監視・助言) |
-| `org_members` | エージェント (agent_id, cli, name, role, dept_id, mode, model, path, lead_id, active) |
-| `delegations` | 委譲 (from_agent, to_agent, kind: task/design/implement/audit/cleanup/advisor) |
-| `member_equipment` | エージェント × 装備 (soubi.db equipment.eq_id) |
+- スキーマ: `soshiki/schema.sql` (departments / org_members / delegations / member_equipment / task_domains / agent_task_domains / agent_skills)
+- シード: `soshiki/seed.sql` (19 人格, 26 ドメイン, 15 スキル)
+- ドキュメント: `soshiki/docs/` (ORGANIZATION / AGENTS / ROUTING)
+- 組織図管理・タスクルーター: **ドラッカー (drucker)**
 
-ビュー: `v_members_by_dept` / `v_org_tree` / `v_delegations`
-
-詳細: [docs/ORGANIZATION.md](ORGANIZATION.md)
+詳細: https://github.com/bonsai/soshiki
 
 ## 4. 実装との対応
 

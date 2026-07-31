@@ -53,8 +53,8 @@ diff-skills です。
 - [docs/CONCEPT.md](docs/CONCEPT.md) — 全体概念・構成
 - [docs/SCHEMA.md](docs/SCHEMA.md) — 概念スキーマ（実装対応）
 - [docs/INTEGRATION.md](docs/INTEGRATION.md) — soubi.db / エージェント連携
-- [docs/ORGANIZATION.md](docs/ORGANIZATION.md) — 組織管理 (エージェント組織) ※ `org/schema.sql`
 - [docs/ROADMAP.md](docs/ROADMAP.md) — 将来構想
+- **組織管理 (soshiki) は別リポジトリへ移管**: `bonsai/soshiki`
 
 ## クイックスタート
 
@@ -71,15 +71,16 @@ make commands             # デバイス × commands
 # 装備品台帳 (下流) へ同期
 python3 ~/soubi/import_from_envdb.py ~/diff-env/env.db ~/soubi/soubi.db
 
-# 組織管理 (soshiki) を確認
-sqlite3 :memory: ".read org/schema.sql" ".read org/seed.sql" \
-  "SELECT * FROM v_members_by_dept;"
+# 組織管理 (soshiki) は別リポジトリ
+git clone https://github.com/bonsai/soshiki.git
+cd soshiki && make init && make dept
 ```
 
 ## 関連リポジトリ
 
 - `bonsai/diff-env` — 実装 (ツール + CLI 資産のスナップショット DB)
+- `bonsai/soshiki` — **エージェント組織の管理**（組織図管理・タスクルーター: ドラッカー）
 - `bonsai/soubi` — 既存の資産カタログ (private, inventory.sqlite)。装備品台帳 `~/soubi/soubi.db` は配備次元のラップ
 - `bonsai/hamachi` — 状態層 (残高・使用量) ※三層アーキテクチャ
 - `bonsai/shizuka` — 判断層 (モデル選択) ※三層アーキテクチャ
-- エージェント: shizuka (ルーティング) / benkei (装備管理) / nyuro (索引)
+- エージェント: shizuka (モデルマネージャー) / drucker (組織・ルーター) / benkei (装備管理) / nyuro (索引)

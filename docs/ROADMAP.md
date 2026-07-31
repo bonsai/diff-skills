@@ -9,15 +9,15 @@
 - ✅ 収集: opencode / hermes / kilo / soubi の skills・MCP・agents・commands
 - ✅ WSL 正移行 (2026-08-01, Windows 側はアーカイブ→3日後削除)
 - ✅ 下流同期: soubi.db 装備品台帳 (弁慶担当)
-- ✅ 組織管理 (soshiki): `org/schema.sql` + `org/seed.sql` + `docs/ORGANIZATION.md`
+- ✅ 組織管理 (soshiki) を独立リポジトリ化: `bonsai/soshiki` (ドラッカー担当)
 - ✅ 既存 `bonsai/soubi` (private) を確認: 資産カタログ層 (inventory.sqlite)
 
 ## 短期 (Next)
 
 - [ ] **装備棚卸しコマンド** (弁慶用): `soubi.py list / issues / add`
       状態を CLI から確認・更新できるようにする
-- [ ] **組織 CLI** (soshiki 用): `soshiki tree / dept / delegate / add-agent`
-      org DB を CLI から操作できるようにする
+- [ ] **組織 CLI** (soshiki 用, ドラッカー): `soshiki tree / dept / delegate / add-agent`
+      組織 DB を CLI から操作できるようにする
 - [ ] **スキル内容ハッシュの信頼性向上**: 現在の version ハッシュ方式の
       検証 (同一スキルが異なるハッシュになるケースの確認)
 - [ ] **soubi 統合の整理**: ローカル `~/soubi/` と既存 `bonsai/soubi` の

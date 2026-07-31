@@ -24,7 +24,7 @@ diff-env が「どのマシンにどのツールがどのバージョンで入�
 | MCP サーバ | 外部ツール接続設定 | `opencode.jsonc` の mcp セクション |
 | agents | エージェント定義 (役割・人格) | `~/.config/opencode/agents/*.md` |
 | commands | カスタムコマンド | `command.db`, `~/.config/opencode/commands` |
-| 組織 (soshiki) | エージェント組織の構造 (部署・lead・委譲) | `org/schema.sql` + `org/seed.sql` ※本リポジトリ |
+| 組織 (soshiki) | エージェント組織の構造 (部署・lead・委譲・得意ドメイン) | `bonsai/soshiki`（別リポジトリ, 組織管理=ドラッカー） |
 
 ## 3. 非目的 (Non-Goals)
 
