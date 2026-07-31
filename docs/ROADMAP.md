@@ -14,10 +14,10 @@
 
 ## 短期 (Next)
 
+- [x] **組織 CLI** (soshiki 用, ドラッカー): `soshiki tree / dept / delegate / add-agent`
+      実装: `soshiki/bin/soshiki.py` → `~/.local/bin/soshiki` (`add-domain` / `route` / `agent` / `domains` / `skills` も実装済み)
 - [ ] **装備棚卸しコマンド** (弁慶用): `soubi.py list / issues / add`
       状態を CLI から確認・更新できるようにする
-- [ ] **組織 CLI** (soshiki 用, ドラッカー): `soshiki tree / dept / delegate / add-agent`
-      組織 DB を CLI から操作できるようにする
 - [ ] **スキル内容ハッシュの信頼性向上**: 現在の version ハッシュ方式の
       検証 (同一スキルが異なるハッシュになるケースの確認)
 - [ ] **soubi 統合の整理**: ローカル `~/soubi/` と既存 `bonsai/soubi` の
