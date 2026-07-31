@@ -11,22 +11,26 @@ diff-skills の対象は「CLI エージェントの知能資産」だが、そ�
 **soshiki（組織）** は、エージェント群を「会社組織」として一元管理する次元:
 
 ```
-誰がいるか      → org_members (18 人格)
+誰がいるか      → org_members (19 人格)
 どの部署か      → departments (統括 / 開発 / 資産・守り / 監視・助言)
 誰に従うか      → lead_id (直属リーダー) / v_org_tree (組織ツリー)
 誰が誰に任せるか → delegations (委譲関係)
 何の道具を持つか → member_equipment (soubi.db 装備連携)
 ```
 
-## 2. 対象 (2026-08-01 時点の 18 人格)
+**管理主体**: 組織図管理・タスクルーター = **ドラッカー (drucker)**。
+モデル選択・コスト管理 = **しずか (shizuka, モデルマネージャー)**。
 
-### 統括 (Shizuka の傘下)
-| agent | 役割 | mode | model |
-|---|---|---|---|
-| shizuka | モデルルーティング・コスト管理（司令塔） | primary | opencode-go/kimi-k3 |
-| elon-pm | 第一原理PM・進捗管理 | subagent | — |
-| hermes | タスク分解統合・スキル選定 | subagent | opencode-go/deepseek-v4-flash |
-| mito | タイムボックス・時管理 | all | — |
+## 2. 対象 (2026-08-01 時点の 19 人格)
+
+### 統括
+| agent | 役割 | mode | model | lead |
+|---|---|---|---|---|
+| shizuka | **モデルマネージャー**（モデル選択・コスト管理） | primary | opencode-go/kimi-k3 | — |
+| drucker | **組織図管理 & タスクルーター**（しずかから委譲） | subagent | opencode-go/deepseek-v4-flash | shizuka |
+| elon-pm | 第一原理PM・進捗管理 | subagent | — | drucker |
+| hermes | タスク分解統合・スキル選定 | subagent | opencode-go/deepseek-v4-flash | drucker |
+| mito | タイムボックス・時管理 | all | — | drucker |
 
 ### 開発
 | agent | 役割 | lead |
@@ -39,20 +43,20 @@ diff-skills の対象は「CLI エージェントの知能資産」だが、そ�
 ### 資産・守り
 | agent | 役割 | lead |
 |---|---|---|
-| benkey (弁慶) | 装備品台帳 soubi.db | shizuka |
-| yoshida (吉田松陰) | 接続管理 + セキュリティ監査 | shizuka |
+| benkey (弁慶) | 装備品台帳 soubi.db | drucker |
+| yoshida (吉田松陰) | 接続管理 + セキュリティ監査 | drucker |
 | nyuro | 索引・孤児検出 | benkey |
 | kimura | ゴミ掃除 | nyuro |
-| goemon | メール処理 | shizuka |
+| goemon | メール処理 | drucker |
 
 ### 監視・助言
-| agent | 役割 |
-|---|---|
-| tsubame | Wi-Fi追跡・在宅判定 |
-| buffett | 投資価値評価 |
-| elon | 第一原理思考 |
-| jobs | デザインディレクション |
-| utaki | 長期ビジョン |
+| agent | 役割 | lead |
+|---|---|---|
+| tsubame | Wi-Fi追跡・在宅判定 | drucker |
+| buffett | 投資価値評価 | drucker |
+| elon | 第一原理思考 | drucker |
+| jobs | デザインディレクション | drucker |
+| utaki | 長期ビジョン | drucker |
 
 ## 3. データモデル
 
@@ -74,16 +78,17 @@ diff-skills の対象は「CLI エージェントの知能資産」だが、そ�
         │  frontmatter (description/mode/model/permission)
         ▼
 org/schema.sql + org/seed.sql  ← ここに組織としての構造 (部署・lead・委譲) を管理
-        │
+        │                        管理者: ドラッカー (drucker)
         ▼
 soubi.db の equipment(kind=agent)  ← 装備としての視点 (弁慶)
         │
         ▼
-ORGCHART.md (wiki)  ← 人間可読の組織図
+ORGCHART.md (wiki)  ← 人間可読の組織図 (ドラッカーが同期)
 ```
 
-- エージェント追加時: `org/seed.sql` に INSERT → `v_org_tree` で確認
+- エージェント追加時: `org/seed.sql` に INSERT → `v_org_tree` で確認 → ORGCHART.md 同期
 - 役割変更時 (例: 弁慶→道具管理): `org_members.role` を更新し ORGCHART.md も更新
+- タスク配分時: **ドラッカー**がルーティング → **しずか**がモデル選択
 - 装備管理: `member_equipment` で「弁慶は soubi.db」「吉田松陰は yoshida.py」等を管理
 
 ## 5. 実体との対応
