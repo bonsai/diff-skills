@@ -24,6 +24,7 @@ diff-env が「どのマシンにどのツールがどのバージョンで入�
 | MCP サーバ | 外部ツール接続設定 | `opencode.jsonc` の mcp セクション |
 | agents | エージェント定義 (役割・人格) | `~/.config/opencode/agents/*.md` |
 | commands | カスタムコマンド | `command.db`, `~/.config/opencode/commands` |
+| 組織 (soshiki) | エージェント組織の構造 (部署・lead・委譲) | `org/schema.sql` + `org/seed.sql` ※本リポジトリ |
 
 ## 3. 非目的 (Non-Goals)
 
@@ -31,6 +32,7 @@ diff-env が「どのマシンにどのツールがどのバージョンで入�
   スナップショットは「内容ハッシュ (version)」で有無・変化を判定する。
 - 資産の**配布・デプロイ**は行わない（配備管理は soubi.db の領域）。
 - ソースコード・依存パッケージの管理はしない（それは diff-env のツール差分 / 通常の VCS の領域）。
+- 組織の**人事評価・勤怠**は管理しない（あくまで構造・関係の記録）。
 
 ## 4. 要件 (Requirements)
 

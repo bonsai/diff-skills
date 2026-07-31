@@ -68,6 +68,21 @@ commands:     device_id, name, description, run
 | `v_mcp` / `v_agents` / `v_commands` | デバイス × 資産 の一覧 |
 | `v_matrix` / `v_diff` / `v_by_kind` | 既存 diff-env のツール差分 |
 
+## 3.5 組織 (soshiki) スキーマ
+
+実装: `org/schema.sql` (+ `org/seed.sql`) ※本リポジトリ
+
+| テーブル | 内容 |
+|---|---|
+| `departments` | 部署 (統括/開発/資産・守り/監視・助言) |
+| `org_members` | エージェント (agent_id, cli, name, role, dept_id, mode, model, path, lead_id, active) |
+| `delegations` | 委譲 (from_agent, to_agent, kind: task/design/implement/audit/cleanup/advisor) |
+| `member_equipment` | エージェント × 装備 (soubi.db equipment.eq_id) |
+
+ビュー: `v_members_by_dept` / `v_org_tree` / `v_delegations`
+
+詳細: [docs/ORGANIZATION.md](ORGANIZATION.md)
+
 ## 4. 実装との対応
 
 | 概念 | 実装 (bonsai/diff-env) |
